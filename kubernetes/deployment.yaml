@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: harbor-hospital
+  labels:
+    app: harbor-hospital
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: harbor-hospital
+  template:
+    metadata:
+      labels:
+        app: harbor-hospital
+    spec:
+      containers:
+        - name: harbor-hospital
+          image: localhost/harbor-hospital:v1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
