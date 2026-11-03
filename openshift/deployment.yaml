@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: harbor-hospital
-          image: image-registry.openshift-image-registry.svc:5000/jamesmensah12-dev/harbor-hospital:v1
+          image: image-registry.openshift-image-registry.svc:5000/jamesmensah12-dev/harbor-hospital:latest
           imagePullPolicy: Always
           resources:
             requests:
