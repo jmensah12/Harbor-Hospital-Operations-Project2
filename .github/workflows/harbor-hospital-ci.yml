@@ -1,0 +1,31 @@
+name: Harbor Hospital CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify project files
+        run: |
+          test -f index.html
+          test -f Containerfile
+          test -f kubernetes/deployment.yaml
+          test -f kubernetes/service.yaml
+          test -f openshift/Dockerfile
+          echo "Harbor Hospital project files verified successfully."
+
+      - name: Build Harbor Hospital container image
+        run: |
+          docker build -t harbor-hospital:${{ github.sha }} -f Containerfile .
+          docker images harbor-hospital
