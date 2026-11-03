@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: harbor-hospital
+  labels:
+    app: harbor-hospital
+spec:
+  to:
+    kind: Service
+    name: harbor-hospital-service
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
